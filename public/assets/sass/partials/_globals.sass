@@ -1,0 +1,47 @@
+@use 'variables'
+@use 'mixins'
+    
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Plus+Jakarta+Sans&display=swap')
+
+*
+    margin: 0px
+    padding: 0px
+    box-sizing: border-box
+    font-family: 'Nunito', sans-serif
+    font-family: 'Plus Jakarta Sans', sans-serif
+    outline: none
+
+h1, h2, h3, h4, h5, h6
+    color: variables.$dark-color
+
+@for $i from 1 through 6
+    h#{$i}
+        font-size: #{(70 / $i)}px
+
+input, button, textarea
+    border: none
+    padding: 10px
+    margin: 0px
+
+    &:focus
+        outline: 1px solid variables.$primary-color
+
+table
+    border-collapse: collapse
+
+ul li
+    list-style: none
+
+a
+    color: black
+    text-decoration: none
+
+    &:hover
+        text-decoration: underline
+
+@import 'colors'
+@import 'spaces'
+@import 'grids'
+@import 'btns'
+@import 'form'
+@import 'table'

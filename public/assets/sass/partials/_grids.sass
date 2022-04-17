@@ -1,0 +1,6 @@
+@use 'variables'
+@use 'mixins'
+
+@for $i from 1 through 10
+    .grid-#{$i}
+        @include mixins.grid(repeat($i, 1fr))

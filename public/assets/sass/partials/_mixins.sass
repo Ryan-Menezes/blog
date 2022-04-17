@@ -1,0 +1,16 @@
+@mixin border-radius($size)
+    -webkik-border-radius: $size
+    -moz-border-radius: $size
+    -ms-border-radius: $size
+    border-radius: $size
+
+@mixin grid($columns, $gap: 10px)
+    display: grid
+    grid-template-columns: $columns
+
+@mixin flex($direction: row, $align-items: flex-start, $justify-content: flex-start, $wrap: nowrap)
+    display: flex
+    flex-direction: $direction
+    align-items: $align-items
+    justify-content: $justify-content
+    flex-wrap: $wrap

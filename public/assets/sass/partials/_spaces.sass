@@ -1,0 +1,33 @@
+@use 'variables'
+
+@for $i from 1 through 10
+    .p-#{$i}
+        padding: #{($i * variables.$padding)}
+
+    .pl-#{$i}
+        padding-left: #{($i * variables.$padding)}
+
+    .pr-#{$i}
+        padding-right: #{($i * variables.$padding)}
+
+    .pt-#{$i}
+        padding-top: #{($i * variables.$padding)}
+
+    .pb-#{$i}
+        padding-bottom: #{($i * variables.$padding)}
+
+@for $i from 1 through 10
+    .m-#{$i}
+        margin: #{($i * variables.$margin)}
+
+    .ml-#{$i}
+        margin-left: #{($i * variables.$margin)}
+
+    .mr-#{$i}
+        margin-right: #{($i * variables.$margin)}
+
+    .mt-#{$i}
+        margin-top: #{($i * variables.$margin)}
+
+    .mb-#{$i}
+        margin-bottom: #{($i * variables.$margin)}

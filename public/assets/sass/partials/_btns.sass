@@ -1,0 +1,66 @@
+@use 'variables'
+@use 'mixins'
+@import 'colors'
+
+.btn
+    @include mixins.border-radius(3px)
+    padding: 14px
+    background-color: transparent
+    cursor: pointer
+    font-size: 17px
+
+    &-primary
+        @extend .bg-primary
+        transition-duration: 0.3s
+
+        &:hover
+            background-color: darken(variables.$primary-color, 10)
+
+    &-secondary
+        @extend .bg-secondary
+        transition-duration: 0.3s
+
+        &:hover
+            background-color: darken(variables.$secondary-color, 10)
+
+    &-third
+        @extend .bg-third
+        transition-duration: 0.3s
+
+        &:hover
+            background-color: darken(variables.$third-color, 10)
+
+    &-success
+        @extend .bg-success
+        transition-duration: 0.3s
+
+        &:hover
+            background-color: darken(variables.$success-color, 10)
+
+    &-danger
+        @extend .bg-danger
+        transition-duration: 0.3s
+
+        &:hover
+            background-color: darken(variables.$danger-color, 10)
+
+    &-warning
+        @extend .bg-warning
+        transition-duration: 0.3s
+
+        &:hover
+            background-color: darken(variables.$warning-color, 10)
+
+    &-dark
+        @extend .bg-dark
+        transition-duration: 0.3s
+
+        &:hover
+            background-color: darken(variables.$dark-color, 10)
+
+    &-light
+        @extend .bg-light
+        transition-duration: 0.3s
+
+        &:hover
+            background-color: darken(variables.$light-color, 10)
