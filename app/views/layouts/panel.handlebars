@@ -5,24 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{config.app.name}}</title>
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome/css/brands.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome/css/regular.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome/css/solid.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome/css/svg-with-js.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome/css/v4-font-face.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome/css/v4-shims.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome/css/v5-font-face.min.css">
+    <link rel="icon" type="image/*" href="/assets/img/icon.png" sizes="32x32">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/brands.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/svg-with-js.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/v4-font-face.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/v4-shims.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/v5-font-face.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/panel/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/editor/editor.css">
 </head>
 <body>
-    <section class="container">
+    <section class="container-elements">
         {{> panel/_menu}}
 
         <div class="content">
             {{{body}}}
         </div>
     </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/assets/plugins/editor/editor.js"></script>
+    <script src="/assets/js/panel/script.js"></script>
 </body>
 </html>

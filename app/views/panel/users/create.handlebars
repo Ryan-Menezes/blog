@@ -1,0 +1,35 @@
+<section class="p-4 border panel">
+    <h2>Novo Usuário</h2>
+    <hr>
+    <form accept="/painel/usuarios/novo/salvar" method="POST" class="form">
+        <div class="grid-2">
+            <div class="form-group">
+                <label for="first_name" class="form-label">Nome:</label>
+                <input type="text" name="first_name" placeholder="Nome" id="first_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="last_name" class="form-label">Sobrenome:</label>
+                <input type="text" name="last_name" placeholder="Sobrenome" id="last_name" class="form-control">
+            </div>
+        </div>
+        <div class="grid-2">
+            <div class="form-group">
+                <label for="email" class="form-label">E-Mail:</label>
+                <input type="email" name="email" placeholder="Nome" id="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" name="password" placeholder="Sobrenome" id="password" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="role" class="form-label">Função:</label>
+            <select name="role" id="role" class="form-control">
+                <option selected>Teste</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary p-2">Salvar <i class="fa-solid fa-floppy-disk"></i></button>
+    </form>
+</section>

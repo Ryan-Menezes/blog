@@ -13,18 +13,22 @@
 
 h1, h2, h3, h4, h5, h6
     color: variables.$dark-color
+    margin: 0px!important
 
 @for $i from 1 through 6
     h#{$i}
-        font-size: #{(70 / $i)}px
+        font-size: #{calc(70 / $i)}px
 
-input, button, textarea
+input, button, textarea, select
     border: none
     padding: 10px
     margin: 0px
 
     &:focus
         outline: 1px solid variables.$primary-color
+
+select
+    height: 50px!important
 
 table
     border-collapse: collapse
@@ -38,6 +42,9 @@ a
 
     &:hover
         text-decoration: underline
+
+.border
+    border: 1px solid #e8e8e8
 
 @import 'colors'
 @import 'spaces'

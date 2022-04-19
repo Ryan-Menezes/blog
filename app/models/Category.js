@@ -10,6 +10,9 @@ const CategorySchema = new Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String
+    },
     posts: [
         {
             type: mongoose.Types.ObjectId,

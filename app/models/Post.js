@@ -10,7 +10,14 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
+    tags: {
+        type: String
+    },
     description: {
+        type: String,
+        required: true
+    },
+    content: {
         type: String,
         required: true
     },

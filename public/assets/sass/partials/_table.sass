@@ -3,10 +3,26 @@
 .table
     border-collapse: collapse
     width: 100%
-    text-align: center
+    text-align: center!important
+
+    tr
+        vertical-align: middle!important
 
     tr td, tr th
-        padding: 12px
-        vertical-align: center
+        padding: 12px!important
+        vertical-align: middle!important
+
     tr td    
         border-top: 1px solid lighten(variables.$dark-color, 80)
+        vertical-align: middle!important
+
+    tbody tr td
+        vertical-align: middle!important
+
+    >thead>tr>th
+        text-align: center!important
+        vertical-align: middle!important
+
+    >thead>tr>td
+        text-align: center!important
+        vertical-align: middle!important
