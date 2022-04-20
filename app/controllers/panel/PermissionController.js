@@ -1,4 +1,4 @@
-const User = require('../../models/User')
+const Permission = require('../../models/Permission')
 const path = 'panel/permissions/'
 
 module.exports = {

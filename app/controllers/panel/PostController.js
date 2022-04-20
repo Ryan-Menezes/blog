@@ -1,4 +1,4 @@
-const User = require('../../models/User')
+const Post = require('../../models/Post')
 const path = 'panel/posts/'
 
 module.exports = {

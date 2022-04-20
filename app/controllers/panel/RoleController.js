@@ -1,4 +1,4 @@
-const User = require('../../models/User')
+const Role = require('../../models/Role')
 const path = 'panel/roles/'
 
 module.exports = {

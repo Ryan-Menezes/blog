@@ -1,7 +1,7 @@
 <section class="p-4 border panel">
     <h2>Editar Usuário</h2>
     <hr>
-    <form accept="/painel/usuarios/novo/salvar" method="POST" class="form">
+    <form action="/painel/usuarios/1/editar/salvar" method="POST" class="form">
         <div class="grid-2">
             <div class="form-group">
                 <label for="first_name" class="form-label">Nome:</label>
@@ -26,7 +26,9 @@
         <div class="form-group">
             <label for="role" class="form-label">Função:</label>
             <select name="role" id="role" class="form-control">
-                <option selected>Teste</option>
+                {{#each roles}}
+                <option value="{{this._id}}">{{this.name}}</option>
+                {{/each}}
             </select>
         </div>
 

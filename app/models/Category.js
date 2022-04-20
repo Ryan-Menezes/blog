@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 const CategorySchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: [true, 'O campo nome é obrigatório']
     },
     slug: {
         type: String,
-        required: true
+        required: [true, 'O campo slug é obrigatório']
     },
     description: {
         type: String

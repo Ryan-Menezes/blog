@@ -938,6 +938,9 @@ a:hover {
   padding: 40px;
   overflow: auto;
 }
+.container-elements .panel-body i {
+  font-size: 25px;
+}
 .container-elements .menu {
   overflow-y: auto;
 }

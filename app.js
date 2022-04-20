@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 const appConfig = require('./config/app')
 const sessionConfig = require('./config/session')
 const databaseConfig = require('./config/database')
+const paginationConfig = require('./config/pagination')
 
 // Inicialization
 const app = express()
@@ -35,10 +36,32 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Middlewares
 app.use(async (req, res, next) => {
+    // Global
+    req.page = req.query.page || 1
+    req.page = ((req.page > 0) ? req.page : 1) - 1
+
+    req.helpers = {
+        error_parser: require('./app/helpers/error_parser'),
+        server_error: require('./app/helpers/server_error')
+    }
+
+    req.config = {
+        app: appConfig,
+        session: sessionConfig,
+        database: databaseConfig,
+        pagination: paginationConfig
+    }
+
+    // Locals
     res.locals.config = {
         app: appConfig,
         session: sessionConfig,
         database: databaseConfig
+    }
+
+    res.locals.messages = {
+        successes: req.flash('msg_successes'),
+        errors: req.flash('msg_errors')
     }
 
     next()

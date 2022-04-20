@@ -4,22 +4,22 @@ const Schema = mongoose.Schema
 const PostSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: [true, 'O campo titulo é obrigatório']
     },
     slug: {
         type: String,
-        required: true
+        required: [true, 'O campo slug é obrigatório']
     },
     tags: {
         type: String
     },
     description: {
         type: String,
-        required: true
+        required: [true, 'O campo descrição é obrigatório']
     },
     content: {
         type: String,
-        required: true
+        required: [true, 'O campo conteúdo é obrigatório']
     },
     visible: {
         type: Boolean,
