@@ -10,9 +10,6 @@ const PostSchema = new Schema({
         type: String,
         required: [true, 'O campo slug é obrigatório']
     },
-    tags: {
-        type: String
-    },
     description: {
         type: String,
         required: [true, 'O campo descrição é obrigatório']

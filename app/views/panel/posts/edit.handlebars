@@ -1,34 +1,34 @@
 <section class="p-4 border panel">
     <h2>Editar Postagem</h2>
     <hr>
-    <form accept="/painel/usuarios/novo/salvar" method="POST" class="form">
+    <form action="/painel/postagens/{{post._id}}/editar/salvar" method="POST" class="form">
         <div class="form-group">
             <label for="title" class="form-label">Titulo:</label>
-            <input type="text" name="title" placeholder="Titulo" id="title" class="form-control">
+            <input type="text" name="title" placeholder="Titulo" id="title" class="form-control" value="{{post.title}}">
         </div>
 
         <div class="grid-2">
             <div class="form-group">
                 <label for="slug" class="form-label">Slug:</label>
-                <input type="text" name="slug" placeholder="Slug" id="slug" class="form-control">
+                <input type="text" name="slug" placeholder="Slug" id="slug" class="form-control" value="{{post.slug}}">
             </div>
             <div class="form-group">
-                <label for="tags" class="form-label">Tags:</label>
-                <input type="text" name="tags" placeholder="Tags" id="tags" class="form-control">
+                <label for="visible" class="form-label">Visibilidade:</label>
+                <select name="visible" id="visible" class="form-control">
+                    {{#if post.visible}}
+                    <option value="1" selected>Visível</option>
+                    <option value="0">Invisível</option>
+                    {{else}}
+                    <option value="1">Visível</option>
+                    <option value="0" selected>Invisível</option>
+                    {{/if}}
+                </select>
             </div>
-        </div>
-
-        <div class="form-group">
-            <label for="visible" class="form-label">Visibilidade:</label>
-            <select name="visible" id="visible" class="form-control">
-                <option value="1">Visível</option>
-                <option value="0" selected>Invisível</option>
-            </select>
         </div>
 
         <div class="form-group">
             <label for="description" class="form-label">Descrição:</label>
-            <textarea type="text" name="description" placeholder="Descrição" id="description" class="form-control" rows="5"></textarea>
+            <textarea type="text" name="description" placeholder="Descrição" id="description" class="form-control" rows="5">{{post.description}}</textarea>
         </div>
 
         <div class="panel panel-default">
@@ -64,8 +64,8 @@
         </div>
 
         <div class="mb-4">
-            <label for="text" class="form-label">Conteúdo:</label>
-            <textarea class="editor"></textarea>
+            <label for="content" class="form-label">Conteúdo:</label>
+            <textarea name="content" id="content" class="editor">{{post.content}}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary p-2">Salvar <i class="fa-solid fa-floppy-disk"></i></button>

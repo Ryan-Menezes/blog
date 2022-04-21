@@ -9,6 +9,6 @@ router.get('/', PostController.index)
 router.get('/novo', PostController.create)
 router.post('/novo/salvar', PostController.store)
 router.get('/:id/editar', PostController.edit)
-router.get('/:id/editar/salvar', PostController.update)
+router.post('/:id/editar/salvar', PostController.update)
 
 module.exports = router

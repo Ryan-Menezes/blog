@@ -1,7 +1,7 @@
 <section class="p-4 border panel">
     <h2>Nova Postagem</h2>
     <hr>
-    <form accept="/painel/usuarios/novo/salvar" method="POST" class="form">
+    <form action="/painel/postagens/novo/salvar" method="POST" class="form">
         <div class="form-group">
             <label for="title" class="form-label">Titulo:</label>
             <input type="text" name="title" placeholder="Titulo" id="title" class="form-control">
@@ -13,17 +13,12 @@
                 <input type="text" name="slug" placeholder="Slug" id="slug" class="form-control">
             </div>
             <div class="form-group">
-                <label for="tags" class="form-label">Tags:</label>
-                <input type="text" name="tags" placeholder="Tags" id="tags" class="form-control">
+                <label for="visible" class="form-label">Visibilidade:</label>
+                <select name="visible" id="visible" class="form-control">
+                    <option value="1">Visível</option>
+                    <option value="0" selected>Invisível</option>
+                </select>
             </div>
-        </div>
-
-        <div class="form-group">
-            <label for="visible" class="form-label">Visibilidade:</label>
-            <select name="visible" id="visible" class="form-control">
-                <option value="1">Visível</option>
-                <option value="0" selected>Invisível</option>
-            </select>
         </div>
 
         <div class="form-group">
@@ -64,8 +59,8 @@
         </div>
 
         <div class="mb-4">
-            <label for="text" class="form-label">Conteúdo:</label>
-            <textarea class="editor"></textarea>
+            <label for="content" class="form-label">Conteúdo:</label>
+            <textarea name="content" id="content" class="editor"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary p-2">Salvar <i class="fa-solid fa-floppy-disk"></i></button>

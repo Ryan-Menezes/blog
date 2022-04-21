@@ -6,9 +6,6 @@ const PermissionController = require('../../app/controllers/panel/PermissionCont
 
 // Routes
 router.get('/', PermissionController.index)
-router.get('/novo', PermissionController.create)
-router.post('/novo/salvar', PermissionController.store)
-router.get('/:id/editar', PermissionController.edit)
-router.get('/:id/editar/salvar', PermissionController.update)
+router.get('/:id', PermissionController.show)
 
 module.exports = router

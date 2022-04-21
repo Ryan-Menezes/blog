@@ -18,15 +18,23 @@
             </tr>
         </thead>
         <tbody>
+            {{#each posts}}
             <tr>
-                <td><a href="" target="_blank" title="">Os melhores jogadores da história do fultebol <i class="fa-solid fa-external-link"></i></a></td>
-                <td><i class="fa-solid fa-check-circle text-success"></i></td>
-                <td>13/02/2003</td>
+                <td><a href="" target="_blank" title="{{this.title}}">{{this.title}} <i class="fa-solid fa-external-link"></i></a></td>
                 <td>
-                    <a href="/painel/postagens/1/editar" class="btn btn-primary" title="Editar Postagem"><i class="fa-solid fa-pencil"></i></a>
-                    <a href="/painel/postagens/1/deletar" class="btn btn-danger" title="Deletar Postagem"><i class="fa-solid fa-trash-alt"></i></a>
+                    {{#if this.visible}}
+                    <i class="fa-solid fa-check-circle text-success"></i>
+                    {{else}}
+                    <i class="fa-solid fa-times-circle text-danger"></i>
+                    {{/if}}
+                </td>
+                <td>{{this.created_at}}</td>
+                <td>
+                    <a href="/painel/postagens/{{this._id}}/editar" class="btn btn-primary" title="Editar Postagem"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="/painel/postagens/{{this._id}}/deletar" class="btn btn-danger" title="Deletar Postagem"><i class="fa-solid fa-trash-alt"></i></a>
                 </td>
             </tr>
+            {{/each}}
         </tbody>
     </table>
 </section>

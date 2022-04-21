@@ -43,7 +43,7 @@ module.exports = {
     store: async (req, res, next) => {
         const data = req.body
 
-        const newUser = new User({
+        const user = new User({
             first_name: data.first_name,
             last_name: data.last_name,
             email: data.email,
@@ -51,7 +51,7 @@ module.exports = {
             role: data.role
         })
 
-        newUser.save()
+        user.save()
         .then(result => {
             req.flash('msg_successes', ['Usuário cadastrado com sucessso!'])
             res.redirect(`${url}novo`)
@@ -64,8 +64,8 @@ module.exports = {
 
     edit: async (req, res, next) => {
         User.findOne({
-            _id: req.query.id
-        })
+            _id: req.params.id
+        }).lean()
         .then(user => {
             if(!user){
                 return req.helpers.server_error(404, res)
@@ -99,8 +99,8 @@ module.exports = {
         const data = req.body
 
         User.findOne({
-            _id: req.query.id
-        })
+            _id: id
+        }).lean()
         .then(user => {
             if(!user){
                 return req.helpers.server_error(404, res)

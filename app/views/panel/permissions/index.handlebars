@@ -17,14 +17,15 @@
             </tr>
         </thead>
         <tbody>
+            {{#each permissions}}
             <tr>
-                <td>Filmes</td>
-                <td>13/02/2003</td>
+                <td>{{this.name}}</td>
+                <td>{{this.date}}</td>
                 <td>
-                    <a href="/painel/permissoes/1/editar" class="btn btn-primary" title="Editar Permissão"><i class="fa-solid fa-pencil"></i></a>
-                    <a href="/painel/permissoes/1/deletar" class="btn btn-danger" title="Deletar Permissão"><i class="fa-solid fa-trash-alt"></i></a>
+                    <a href="/painel/permissoes/{{this._id}}" class="btn btn-warning" title="Visualizar Permissão"><i class="fa-solid fa-eye"></i></a>
                 </td>
             </tr>
+            {{/each}}
         </tbody>
     </table>
 </section>
