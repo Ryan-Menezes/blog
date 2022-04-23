@@ -30,30 +30,12 @@
             <div class="panel-heading">Categorias</div>
             <div class="panel-body">
                 <div class="grid-6">
+                    {{#each categories}}
                     <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
+                        <input type="checkbox" name="categories[]" id="category_{{this._id}}" value="{{this._id}}">
+                        <label for="category_{{this._id}}" class="form-label">{{this.name}}</label>
                     </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
+                    {{/each}}
                 </div>
             </div>
         </div>

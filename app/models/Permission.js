@@ -9,12 +9,6 @@ const PermissionSchema = new Schema({
     description: {
         type: String
     },
-    roles: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'roles'
-        }
-    ],
     created_at: {
         type: Date,
         default: Date.now()

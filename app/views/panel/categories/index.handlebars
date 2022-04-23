@@ -17,14 +17,16 @@
             </tr>
         </thead>
         <tbody>
+            {{#each categories}}
             <tr>
-                <td><a href="" target="_blank" title="">Filmes <i class="fa-solid fa-external-link"></i></a></td>
-                <td>13/02/2003</td>
+                <td><a href="{{this.slug}}" target="_blank" title="">{{this.name}} <i class="fa-solid fa-external-link"></i></a></td>
+                <td>{{dateFormat this.created_at}}</td>
                 <td>
-                    <a href="/painel/categorias/1/editar" class="btn btn-primary" title="Editar Categoria"><i class="fa-solid fa-pencil"></i></a>
-                    <a href="/painel/categorias/1/deletar" class="btn btn-danger" title="Deletar Categoria"><i class="fa-solid fa-trash-alt"></i></a>
+                    <a href="/painel/categorias/{{this._id}}/editar" class="btn btn-primary" title="Editar Categoria"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="/painel/categorias/{{this._id}}/deletar" class="btn btn-danger" title="Deletar Categoria"><i class="fa-solid fa-trash-alt"></i></a>
                 </td>
             </tr>
+            {{/each}}
         </tbody>
     </table>
 </section>

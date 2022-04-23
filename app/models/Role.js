@@ -15,12 +15,6 @@ const RoleSchema = new Schema({
             ref: 'permissions'
         }
     ],
-    users: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'users'
-        }
-    ],
     created_at: {
         type: Date,
         default: Date.now()

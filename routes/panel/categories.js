@@ -9,6 +9,6 @@ router.get('/', CategoryController.index)
 router.get('/novo', CategoryController.create)
 router.post('/novo/salvar', CategoryController.store)
 router.get('/:id/editar', CategoryController.edit)
-router.get('/:id/editar/salvar', CategoryController.update)
+router.post('/:id/editar/salvar', CategoryController.update)
 
 module.exports = router

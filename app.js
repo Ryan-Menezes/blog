@@ -19,6 +19,18 @@ const hbs = handlebars.create({
     runtimeOptions: {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true
+    },
+    helpers: {
+        dateFormat(date){
+            return date.toLocaleString('pt-BR')
+        },
+        includes(collection, value){
+            if(!Array.isArray(collection)){
+                return false
+            }
+
+            return collection.find(v => v._id.toString() == value.toString())
+        }
     }
 })
 

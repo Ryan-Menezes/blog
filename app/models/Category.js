@@ -13,12 +13,6 @@ const CategorySchema = new Schema({
     description: {
         type: String
     },
-    posts: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'categories'
-        }
-    ],
     created_at: {
         type: Date,
         default: Date.now()

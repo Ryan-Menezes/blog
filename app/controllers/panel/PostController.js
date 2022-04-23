@@ -1,4 +1,4 @@
-const Category = require('../../models/Post')
+const Category = require('../../models/Category')
 const Post = require('../../models/Post')
 const path = 'panel/posts/'
 const url = '/painel/postagens/'
@@ -43,15 +43,13 @@ module.exports = {
     store: async (req, res, next) => {
         const data = req.body
 
-        console.log(data)
-
         const post = new Post({
             title: data.title,
             slug: data.slug,
             description: data.description,
             content: data.content,
             visible: data.visible,
-            categories: []
+            categories: data.categories
         })
 
         post.save()
@@ -117,7 +115,7 @@ module.exports = {
                 description: data.description,
                 content: data.content,
                 visible: data.visible,
-                categories: []
+                categories: data.categories
             })
             .then(result => {
                 req.flash('msg_successes', ['Postagem editada com sucessso!'])

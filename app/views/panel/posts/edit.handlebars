@@ -35,30 +35,19 @@
             <div class="panel-heading">Categorias</div>
             <div class="panel-body">
                 <div class="grid-6">
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="categories[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
+                    {{#each categories}}
+                        {{#if (includes ../post.categories this._id)}}
+                        <div>
+                            <input type="checkbox" name="categories[]" id="category_{{this._id}}" value="{{this._id}}" checked>
+                            <label for="category_{{this._id}}" class="form-label">{{this.name}}</label>
+                        </div>
+                        {{else}}
+                        <div>
+                            <input type="checkbox" name="categories[]" id="category_{{this._id}}" value="{{this._id}}">
+                            <label for="category_{{this._id}}" class="form-label">{{this.name}}</label>
+                        </div>
+                        {{/if}}
+                    {{/each}}
                 </div>
             </div>
         </div>
