@@ -10,5 +10,6 @@ router.get('/novo', CategoryController.create)
 router.post('/novo/salvar', CategoryController.store)
 router.get('/:id/editar', CategoryController.edit)
 router.post('/:id/editar/salvar', CategoryController.update)
+router.post('/:id/deletar', CategoryController.delete)
 
 module.exports = router

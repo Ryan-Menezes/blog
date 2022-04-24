@@ -38,7 +38,7 @@ module.exports = {
 
         category.save()
         .then(result => {
-            req.flash('msg_successes', ['Categoria cadastrada com sucessso!'])
+            req.flash('msg_successes', ['Categoria cadastrada com sucesso!'])
             res.redirect(`${url}novo`)
         })
         .catch(error => {
@@ -86,12 +86,41 @@ module.exports = {
                 description: data.description
             })
             .then(result => {
-                req.flash('msg_successes', ['Categoria editada com sucessso!'])
+                req.flash('msg_successes', ['Categoria editada com sucesso!'])
                 res.redirect(`${url}${id}/editar`)
             })
             .catch(error => {
                 req.flash('msg_errors', req.helpers.error_parser(error))
                 res.redirect(`${url}${id}/editar`)
+            })
+        })
+        .catch(error => {
+            req.helpers.server_error(404, res)
+        })
+    },
+
+
+    delete: async (req, res, next) => {
+        const id = req.params.id
+
+        Category.findOne({
+            _id: id
+        }).lean()
+        .then(category => {
+            if(!category){
+                return req.helpers.server_error(404, res)
+            }
+
+            Category.deleteOne({
+                _id: id
+            })
+            .then(result => {
+                req.flash('msg_successes', ['Categoria deletada com sucessso!'])
+                res.redirect(url)
+            })
+            .catch(error => {
+                req.flash('msg_errors', req.helpers.error_parser(error))
+                res.redirect(url)
             })
         })
         .catch(error => {

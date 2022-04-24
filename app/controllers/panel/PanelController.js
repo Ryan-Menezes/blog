@@ -9,7 +9,14 @@ const path = 'panel/'
 module.exports = {
     index: async (req, res, next) => {
         res.render(`${path}index`, {
-            layout: 'panel'
+            layout: 'panel',
+            count: {
+                users: await User.count(),
+                posts: await Post.count(),
+                categories: await Category.count(),
+                roles: await Role.count(),
+                permissions: await Permission.count()
+            }
         })
     }
 }

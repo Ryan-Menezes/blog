@@ -54,7 +54,7 @@ module.exports = {
 
         post.save()
         .then(result => {
-            req.flash('msg_successes', ['Postagem cadastrada com sucessso!'])
+            req.flash('msg_successes', ['Postagem cadastrada com sucesso!'])
             res.redirect(`${url}novo`)
         })
         .catch(error => {
@@ -118,12 +118,40 @@ module.exports = {
                 categories: data.categories
             })
             .then(result => {
-                req.flash('msg_successes', ['Postagem editada com sucessso!'])
+                req.flash('msg_successes', ['Postagem editada com sucesso!'])
                 res.redirect(`${url}${id}/editar`)
             })
             .catch(error => {
                 req.flash('msg_errors', req.helpers.error_parser(error))
                 res.redirect(`${url}${id}/editar`)
+            })
+        })
+        .catch(error => {
+            req.helpers.server_error(404, res)
+        })
+    },
+
+    delete: async (req, res, next) => {
+        const id = req.params.id
+
+        Post.findOne({
+            _id: id
+        }).lean()
+        .then(post => {
+            if(!post){
+                return req.helpers.server_error(404, res)
+            }
+
+            Post.deleteOne({
+                _id: id
+            })
+            .then(result => {
+                req.flash('msg_successes', ['Postagem deletada com sucesso!'])
+                res.redirect(url)
+            })
+            .catch(error => {
+                req.flash('msg_errors', req.helpers.error_parser(error))
+                res.redirect(url)
             })
         })
         .catch(error => {

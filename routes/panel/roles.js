@@ -10,5 +10,6 @@ router.get('/novo', RoleController.create)
 router.post('/novo/salvar', RoleController.store)
 router.get('/:id/editar', RoleController.edit)
 router.post('/:id/editar/salvar', RoleController.update)
+router.post('/:id/deletar', RoleController.delete)
 
 module.exports = router

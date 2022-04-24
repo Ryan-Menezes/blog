@@ -51,7 +51,7 @@ module.exports = {
 
         role.save()
         .then(result => {
-            req.flash('msg_successes', ['Função cadastrada com sucessso!'])
+            req.flash('msg_successes', ['Função cadastrada com sucesso!'])
             res.redirect(`${url}novo`)
         })
         .catch(error => {
@@ -112,12 +112,40 @@ module.exports = {
                 permissions: data.permissions
             })
             .then(result => {
-                req.flash('msg_successes', ['Função editada com sucessso!'])
+                req.flash('msg_successes', ['Função editada com sucesso!'])
                 res.redirect(`${url}${id}/editar`)
             })
             .catch(error => {
                 req.flash('msg_errors', req.helpers.error_parser(error))
                 res.redirect(`${url}${id}/editar`)
+            })
+        })
+        .catch(error => {
+            req.helpers.server_error(404, res)
+        })
+    },
+
+    delete: async (req, res, next) => {
+        const id = req.params.id
+
+        Role.findOne({
+            _id: id
+        }).lean()
+        .then(role => {
+            if(!role){
+                return req.helpers.server_error(404, res)
+            }
+
+            Role.deleteOne({
+                _id: id
+            })
+            .then(result => {
+                req.flash('msg_successes', ['Função deletada com sucesso!'])
+                res.redirect(url)
+            })
+            .catch(error => {
+                req.flash('msg_errors', req.helpers.error_parser(error))
+                res.redirect(url)
             })
         })
         .catch(error => {

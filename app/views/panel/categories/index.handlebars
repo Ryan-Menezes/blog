@@ -1,3 +1,22 @@
+<!-- Modal -->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="" method="POST" class="modal-content form-delete">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Deletar Categoria</h4>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente deletar essa categoria?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-danger">Deletar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <section class="p-4 border panel">
     <div class="grid-2">
         <div>
@@ -23,7 +42,7 @@
                 <td>{{dateFormat this.created_at}}</td>
                 <td>
                     <a href="/painel/categorias/{{this._id}}/editar" class="btn btn-primary" title="Editar Categoria"><i class="fa-solid fa-pencil"></i></a>
-                    <a href="/painel/categorias/{{this._id}}/deletar" class="btn btn-danger" title="Deletar Categoria"><i class="fa-solid fa-trash-alt"></i></a>
+                    <a href="javascript:void(0)" class="btn btn-danger" title="Deletar Categoria" data-toggle="modal" data-target="#modalDelete" data-delete="/painel/categorias/{{this._id}}/deletar"><i class="fa-solid fa-trash-alt"></i></a>
                 </td>
             </tr>
             {{/each}}

@@ -68,7 +68,7 @@ module.exports = {
 
                 user.save()
                 .then(result => {
-                    req.flash('msg_successes', ['Usuário cadastrado com sucessso!'])
+                    req.flash('msg_successes', ['Usuário cadastrado com sucesso!'])
                     res.redirect(`${url}novo`)
                 })
                 .catch(error => {
@@ -141,12 +141,41 @@ module.exports = {
                 role: data.role
             })
             .then(result => {
-                req.flash('msg_successes', ['Usuário editado com sucessso!'])
+                req.flash('msg_successes', ['Usuário editado com sucesso!'])
                 res.redirect(`${url}${id}/editar`)
             })
             .catch(error => {
                 req.flash('msg_errors', req.helpers.error_parser(error))
                 res.redirect(`${url}${id}/editar`)
+            })
+        })
+        .catch(error => {
+            req.helpers.server_error(404, res)
+        })
+    },
+
+
+    delete: async (req, res, next) => {
+        const id = req.params.id
+
+        User.findOne({
+            _id: id
+        }).lean()
+        .then(user => {
+            if(!user){
+                return req.helpers.server_error(404, res)
+            }
+
+            User.deleteOne({
+                _id: id
+            })
+            .then(result => {
+                req.flash('msg_successes', ['Usuário deletada com sucessso!'])
+                res.redirect(url)
+            })
+            .catch(error => {
+                req.flash('msg_errors', req.helpers.error_parser(error))
+                res.redirect(url)
             })
         })
         .catch(error => {
