@@ -1,7 +1,7 @@
 <section class="p-4 border panel">
     <h2>Nova Função</h2>
     <hr>
-    <form accept="/painel/funcoes/novo/salvar" method="POST" class="form">
+    <form action="/painel/funcoes/novo/salvar" method="POST" class="form">
         <div class="form-group">
             <label for="name" class="form-label">Nome:</label>
             <input type="text" name="name" placeholder="Nome" id="name" class="form-control">
@@ -16,30 +16,12 @@
             <div class="panel-heading">Permissões</div>
             <div class="panel-body">
                 <div class="grid-6">
+                    {{#each permissions}}
                     <div>
-                        <input type="checkbox" name="permissions[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
+                        <input type="checkbox" name="permissions[]" id="permission_{{this._id}}">
+                        <label for="permission_{{this._id}}" class="form-label">{{this.name}}</label>
                     </div>
-                    <div>
-                        <input type="checkbox" name="permissions[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="permissions[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="permissions[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="permissions[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="permissions[]" id="filmes">
-                        <label for="filmes" class="form-label">Filmes</label>
-                    </div>
+                    {{/each}}
                 </div>
             </div>
         </div>

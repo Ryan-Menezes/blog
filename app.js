@@ -9,6 +9,7 @@ const appConfig = require('./config/app')
 const sessionConfig = require('./config/session')
 const databaseConfig = require('./config/database')
 const paginationConfig = require('./config/pagination')
+const passwordConfig = require('./config/password')
 
 // Inicialization
 const app = express()
@@ -23,6 +24,9 @@ const hbs = handlebars.create({
     helpers: {
         dateFormat(date){
             return date.toLocaleString('pt-BR')
+        },
+        equals(val1, val2){
+            return val1.toString() === val2.toString()
         },
         includes(collection, value){
             if(!Array.isArray(collection)){
@@ -61,7 +65,8 @@ app.use(async (req, res, next) => {
         app: appConfig,
         session: sessionConfig,
         database: databaseConfig,
-        pagination: paginationConfig
+        pagination: paginationConfig,
+        password: passwordConfig
     }
 
     // Locals

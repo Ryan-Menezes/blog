@@ -1,11 +1,12 @@
 const User = require('../../models/User')
 const Role = require('../../models/Role')
+const bcrypt = require('bcryptjs')
 const path = 'panel/users/'
 const url = '/painel/usuarios/'
 
 module.exports = {
     index: async (req, res, next) => {
-        User.find().skip(req.page).limit(req.config.pagination.limit).lean()
+        User.find().populate('role').skip(req.page).limit(req.config.pagination.limit).lean()
         .then(users => {
             res.render(`${path}index`, {
                 layout: 'panel',
@@ -51,14 +52,30 @@ module.exports = {
             role: data.role
         })
 
-        user.save()
-        .then(result => {
-            req.flash('msg_successes', ['Usuário cadastrado com sucessso!'])
-            res.redirect(`${url}novo`)
-        })
-        .catch(error => {
-            req.flash('msg_errors', req.helpers.error_parser(error))
-            res.redirect(`${url}novo`)
+        bcrypt.genSalt(req.config.password.salt, (error, salt) => {
+            if(error){
+                req.flash('msg_errors', ['Não foi possível registrar um novo usuário, Ocorreu um erro no processo de registro!'])
+                return res.redirect(`${url}novo`)
+            }
+
+            bcrypt.hash(user.password, salt, (error, hash) => {
+                if(error){
+                    req.flash('msg_errors', ['Não foi possível registrar um novo usuário, Ocorreu um erro no processo de registro!'])
+                    return res.redirect(`${url}novo`)
+                }
+
+                user.password = hash
+
+                user.save()
+                .then(result => {
+                    req.flash('msg_successes', ['Usuário cadastrado com sucessso!'])
+                    res.redirect(`${url}novo`)
+                })
+                .catch(error => {
+                    req.flash('msg_errors', req.helpers.error_parser(error))
+                    res.redirect(`${url}novo`)
+                })
+            })
         })
     },
 
@@ -101,11 +118,19 @@ module.exports = {
         User.findOne({
             _id: id
         }).lean()
-        .then(user => {
+        .then(async (user) => {
             if(!user){
                 return req.helpers.server_error(404, res)
             }
 
+            // Verifica se houve uma alteração de senha
+            if(data.password){
+                data.password = await bcrypt.hashSync(data.password, req.config.password.salt)
+            }else{
+                data.password = user.password
+            }
+
+            // Atualiza o usuário
             User.updateOne({
                 _id: id
             }, {

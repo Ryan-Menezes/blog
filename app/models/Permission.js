@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const PermissionSchema = new Schema({
     name: {
         type: String,
-        required: [true, 'O campo slug é obrigatório']
+        required: [true, 'O campo nome é obrigatório']
     },
     description: {
         type: String

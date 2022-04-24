@@ -1,25 +1,25 @@
 <section class="p-4 border panel">
     <h2>Editar Usuário</h2>
     <hr>
-    <form action="/painel/usuarios/1/editar/salvar" method="POST" class="form">
+    <form action="/painel/usuarios/{{user._id}}/editar/salvar" method="POST" class="form">
         <div class="grid-2">
             <div class="form-group">
                 <label for="first_name" class="form-label">Nome:</label>
-                <input type="text" name="first_name" placeholder="Nome" id="first_name" class="form-control">
+                <input type="text" name="first_name" placeholder="Nome" id="first_name" class="form-control" value="{{user.first_name}}">
             </div>
             <div class="form-group">
                 <label for="last_name" class="form-label">Sobrenome:</label>
-                <input type="text" name="last_name" placeholder="Sobrenome" id="last_name" class="form-control">
+                <input type="text" name="last_name" placeholder="Sobrenome" id="last_name" class="form-control" value="{{user.last_name}}">
             </div>
         </div>
         <div class="grid-2">
             <div class="form-group">
                 <label for="email" class="form-label">E-Mail:</label>
-                <input type="email" name="email" placeholder="Nome" id="email" class="form-control">
+                <input type="email" name="email" placeholder="Nome" id="email" class="form-control" value="{{user.email}}">
             </div>
             <div class="form-group">
                 <label for="password" class="form-label">Senha:</label>
-                <input type="password" name="password" placeholder="Sobrenome" id="password" class="form-control">
+                <input type="password" name="password" placeholder="Senha" id="password" class="form-control">
             </div>
         </div>
 
@@ -27,7 +27,11 @@
             <label for="role" class="form-label">Função:</label>
             <select name="role" id="role" class="form-control">
                 {{#each roles}}
-                <option value="{{this._id}}">{{this.name}}</option>
+                    {{#if (equals ../user.role._id this._id)}}
+                    <option value="{{this._id}}" selected>{{this.name}}</option>
+                    {{else}}
+                    <option value="{{this._id}}">{{this.name}}</option>
+                    {{/if}}
                 {{/each}}
             </select>
         </div>

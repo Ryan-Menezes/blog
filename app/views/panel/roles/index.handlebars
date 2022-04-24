@@ -17,14 +17,16 @@
             </tr>
         </thead>
         <tbody>
+            {{#each roles}}
             <tr>
-                <td>Filmes</td>
-                <td>13/02/2003</td>
+                <td>{{this.name}}</td>
+                <td>{{dateFormat this.created_at}}</td>
                 <td>
-                    <a href="/painel/funcoes/1/editar" class="btn btn-primary" title="Editar Função"><i class="fa-solid fa-pencil"></i></a>
-                    <a href="/painel/funcoes/1/deletar" class="btn btn-danger" title="Deletar Função"><i class="fa-solid fa-trash-alt"></i></a>
+                    <a href="/painel/funcoes/{{this._id}}/editar" class="btn btn-primary" title="Editar Função"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="/painel/funcoes/{{this._id}}/deletar" class="btn btn-danger" title="Deletar Função"><i class="fa-solid fa-trash-alt"></i></a>
                 </td>
             </tr>
+            {{/each}}
         </tbody>
     </table>
 </section>

@@ -19,16 +19,18 @@
             </tr>
         </thead>
         <tbody>
+            {{#each users}}
             <tr>
-                <td>Ryan Menezes</td>
-                <td>menezesryan1010@gmail.com</td>
-                <td>Administração</td>
-                <td>13/02/2003</td>
+                <td>{{this.first_name}} {{this.last_name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.role.name}}</td>
+                <td>{{dateFormat this.created_at}}</td>
                 <td>
-                    <a href="/painel/usuarios/1/editar" class="btn btn-primary" title="Editar Usuário"><i class="fa-solid fa-pencil"></i></a>
-                    <a href="/painel/usuarios/1/deletar" class="btn btn-danger" title="Deletar Usuário"><i class="fa-solid fa-trash-alt"></i></a>
+                    <a href="/painel/usuarios/{{this._id}}/editar" class="btn btn-primary" title="Editar Usuário"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="/painel/usuarios/{{this._id}}/deletar" class="btn btn-danger" title="Deletar Usuário"><i class="fa-solid fa-trash-alt"></i></a>
                 </td>
             </tr>
+            {{/each}}
         </tbody>
     </table>
 </section>

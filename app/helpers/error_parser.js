@@ -7,5 +7,5 @@ module.exports = (error) => {
         }
     }
     
-    return errors.length ? errors : ['Não foi possível finalizar essa operação, Ocorreo um erro no processo!']
+    return errors.length ? errors : ['Não foi possível finalizar essa operação, Ocorreu um erro no processo!']
 }
