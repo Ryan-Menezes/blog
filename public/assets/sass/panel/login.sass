@@ -1,0 +1,58 @@
+@use '../partials/globals'
+@use '../partials/variables'
+@use '../partials/mixins'
+@import '../partials/colors'
+
+.alert
+    @include mixins.border-radius(5px)
+    padding: 15px
+    min-width: 400px
+    margin-bottom: 20px
+
+    &-danger
+        background-color: variables.$danger-color
+        border: 1px solid darken(variables.$danger-color, 10)
+        color: white
+    
+    
+.container-login
+    @include mixins.flex(column, center, center)
+    position: absolute
+    height: 100vh
+    width: 100vw
+    background-color: variables.$primary-color
+
+    .content-login
+        width: 400px
+        background-color: white
+        box-shadow: 0px 0px 10px darken(variables.$primary-color, 10)
+
+        &-header
+            padding: 20px
+            background-color: variables.$primary-color
+            color: white
+
+            h1
+                font-size: 20px
+                color: white
+
+                i
+                    margin-right: 10px
+
+        &-body
+            padding: 20px
+
+            .form-group
+                width: 100%
+                margin-bottom: 10px
+
+            .form-control
+                width: 100%
+
+            .form-label
+                margin-bottom: 5px
+
+            button[type=submit]
+                padding: 15px
+                width: 100%
+                margin-top: 20px

@@ -1,6 +1,7 @@
 // Dependencies
 const path = require('path')
 const express = require('express')
+const passport = require('passport')
 const handlebars = require('express-handlebars')
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -41,6 +42,8 @@ const hbs = handlebars.create({
 // Settings
 app.use(session(sessionConfig))
 app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 app.set('views', path.join(__dirname, 'app', 'views'))
@@ -49,6 +52,12 @@ app.use(express.urlencoded({
     extended: true
 }))
 app.use(express.static(path.join(__dirname, 'public')))
+
+// Mongoose
+mongoose.Promise = global.Promise
+mongoose.connect(`mongodb://${databaseConfig.server}/${databaseConfig.name}`)
+.then(() => console.log(`MongoDB Connected: mongodb://${databaseConfig.server}/${databaseConfig.name}`))
+.catch(error => console.log(error))
 
 // Middlewares
 app.use(async (req, res, next) => {
@@ -78,19 +87,19 @@ app.use(async (req, res, next) => {
 
     res.locals.messages = {
         successes: req.flash('msg_successes'),
-        errors: req.flash('msg_errors')
+        errors: req.flash('msg_errors'),
+        error: req.flash('error')
     }
 
     next()
 })
 
-// Mongoose
-mongoose.Promise = global.Promise
-mongoose.connect(`mongodb://${databaseConfig.server}/${databaseConfig.name}`)
-.then(() => console.log(`MongoDB Connected: mongodb://${databaseConfig.server}/${databaseConfig.name}`))
-.catch(error => console.log(error))
-
 // Routes
+require('./app/middlewares/passport')()
+
+app.use('/painel/login', require('./routes/panel/login'))
+
+app.use(require('./app/middlewares/auth'))
 app.use('/painel', require('./routes/panel/index'))
 app.use('/painel/usuarios', require('./routes/panel/users'))
 app.use('/painel/postagens', require('./routes/panel/posts'))

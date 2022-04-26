@@ -1,0 +1,22 @@
+
+<section class="container-login">
+    {{> _msg}}
+
+    <div class="content-login">
+        <div class="content-login-header">
+            <h1><i class="fas fa-lock"></i>Login</h1>
+        </div>
+        <form action="/painel/login/validar" method="POST" class="form content-login-body">
+            <div class="form-group">
+                <label for="email" class="form-label">E-Mail:</label>
+                <input type="email" name="email" id="email" placeholder="E-Mail" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" name="password" id="password" placeholder="Senha" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+    </div>
+</section>

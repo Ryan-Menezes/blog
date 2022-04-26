@@ -18,5 +18,10 @@ module.exports = {
                 permissions: await Permission.count()
             }
         })
+    },
+
+    logout: async (req, res, next) => {
+        req.logout()
+        res.redirect('/painel/login')
     }
 }
