@@ -32,7 +32,7 @@ module.exports = {
 
             res.render(`${path}show`, {
                 layout: 'panel',
-                role
+                permission
             })
         })
         .catch(error => {

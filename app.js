@@ -66,6 +66,7 @@ app.use(async (req, res, next) => {
     req.page = ((req.page > 0) ? req.page : 1) - 1
 
     req.helpers = {
+        can: require('./app/helpers/can'),
         error_parser: require('./app/helpers/error_parser'),
         server_error: require('./app/helpers/server_error')
     }
@@ -79,10 +80,18 @@ app.use(async (req, res, next) => {
     }
 
     // Locals
+    res.locals.helpers = {
+        can: require('./app/helpers/can')(req),
+        error_parser: require('./app/helpers/error_parser'),
+        server_error: require('./app/helpers/server_error')
+    }
+
     res.locals.config = {
         app: appConfig,
         session: sessionConfig,
-        database: databaseConfig
+        database: databaseConfig,
+        pagination: paginationConfig,
+        password: passwordConfig
     }
 
     res.locals.messages = {

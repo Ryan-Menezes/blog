@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Role = require('../models/Role')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
@@ -35,8 +36,19 @@ module.exports = async () => {
     })
 
     passport.deserializeUser((id, done) => {
-        User.findById(id, (error, user) => {
-            done(error, user)
+        User.findById(id).populate('role')
+        .then(user => {
+            Role.findById(user.role._id).populate('permissions')
+            .then(role => {
+                user.role = role    
+                done(null, user)
+            })
+            .catch(error => {
+                done(error, null)
+            })
+        })
+        .catch(error => {
+            done(error, null)
         })
     })
 }

@@ -1,3 +1,4 @@
+{{#if (helpers.can 'delete.users')}}
 <!-- Modal -->
 <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -16,15 +17,18 @@
         </form>
     </div>
 </div>
+{{/if}}
 
 <section class="p-4 border panel">
     <div class="grid-2">
         <div>
             <h2>Usuários</h2>
         </div>
+        {{#if (helpers.can 'create.users')}}
         <div>
             <a href="/painel/usuarios/novo" title="Novo Usuário" class="btn btn-primary pull-right">Novo <i class="fa-solid fa-circle-plus"></i></a>
         </div>
+        {{/if}}
     </div>
     <hr>
     <table class="table">
@@ -45,8 +49,13 @@
                 <td>{{this.role.name}}</td>
                 <td>{{dateFormat this.created_at}}</td>
                 <td>
+                    {{#if (../helpers.can 'edit.users')}}
                     <a href="/painel/usuarios/{{this._id}}/editar" class="btn btn-primary" title="Editar Usuário"><i class="fa-solid fa-pencil"></i></a>
+                    {{/if}}
+
+                    {{#if (../helpers.can 'delete.users')}}
                     <a href="javascript:void(0)" class="btn btn-danger" title="Deletar Usuário" data-toggle="modal" data-target="#modalDelete" data-delete="/painel/usuarios/{{this._id}}/deletar"><i class="fa-solid fa-trash-alt"></i></a>
+                    {{/if}}
                 </td>
             </tr>
             {{/each}}

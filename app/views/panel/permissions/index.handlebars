@@ -22,7 +22,9 @@
                 <td>{{this.name}}</td>
                 <td>{{this.date}}</td>
                 <td>
+                    {{#if (../helpers.can 'view.permissions')}}
                     <a href="/painel/permissoes/{{this._id}}" class="btn btn-warning" title="Visualizar Permissão"><i class="fa-solid fa-eye"></i></a>
+                    {{/if}}
                 </td>
             </tr>
             {{/each}}

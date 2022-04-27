@@ -1,7 +1,7 @@
 <section class="p-4 border panel">
     <h2>Editar Função</h2>
     <hr>
-    <form action="/painel/funcoes/{{role.id}}/editar/salvar" method="POST" class="form">
+    <form action="/painel/funcoes/{{role._id}}/editar/salvar" method="POST" class="form">
         <div class="form-group">
             <label for="name" class="form-label">Nome:</label>
             <input type="text" name="name" placeholder="Nome" id="name" class="form-control" value="{{role.name}}">
@@ -19,12 +19,12 @@
                     {{#each permissions}}
                         {{#if (includes ../role.permissions this._id)}}
                         <div>
-                            <input type="checkbox" name="permissions[]" id="permission_{{this._id}}" checked>
+                            <input type="checkbox" name="permissions[]" id="permission_{{this._id}}" value="{{this._id}}" checked>
                             <label for="permission_{{this._id}}" class="form-label">{{this.name}}</label>
                         </div>
                         {{else}}
                         <div>
-                            <input type="checkbox" name="permissions[]" id="permission_{{this._id}}">
+                            <input type="checkbox" name="permissions[]" id="permission_{{this._id}}" value="{{this._id}}">
                             <label for="permission_{{this._id}}" class="form-label">{{this.name}}</label>
                         </div>
                         {{/if}}

@@ -1,3 +1,4 @@
+{{#if (helpers.can 'delete.categories')}}
 <!-- Modal -->
 <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -16,15 +17,18 @@
         </form>
     </div>
 </div>
+{{/if}}
 
 <section class="p-4 border panel">
     <div class="grid-2">
         <div>
             <h2>Categorias</h2>
         </div>
+        {{#if (helpers.can 'create.categories')}}
         <div>
             <a href="/painel/categorias/novo" title="Nova Categoria" class="btn btn-primary pull-right">Novo <i class="fa-solid fa-circle-plus"></i></a>
         </div>
+        {{/if}}
     </div>
     <hr>
     <table class="table">
@@ -41,8 +45,13 @@
                 <td><a href="{{this.slug}}" target="_blank" title="">{{this.name}} <i class="fa-solid fa-external-link"></i></a></td>
                 <td>{{dateFormat this.created_at}}</td>
                 <td>
+                    {{#if (../helpers.can 'edit.categories')}}
                     <a href="/painel/categorias/{{this._id}}/editar" class="btn btn-primary" title="Editar Categoria"><i class="fa-solid fa-pencil"></i></a>
+                    {{/if}}
+
+                    {{#if (../helpers.can 'delete.categories')}}
                     <a href="javascript:void(0)" class="btn btn-danger" title="Deletar Categoria" data-toggle="modal" data-target="#modalDelete" data-delete="/painel/categorias/{{this._id}}/deletar"><i class="fa-solid fa-trash-alt"></i></a>
+                    {{/if}}
                 </td>
             </tr>
             {{/each}}
