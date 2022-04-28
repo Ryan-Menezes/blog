@@ -59,6 +59,8 @@ mongoose.connect(`mongodb://${databaseConfig.server}/${databaseConfig.name}`)
 .then(() => console.log(`MongoDB Connected: mongodb://${databaseConfig.server}/${databaseConfig.name}`))
 .catch(error => console.log(error))
 
+require('./database/seeders/create_permissions')
+
 // Middlewares
 app.use(async (req, res, next) => {
     // Global
@@ -80,6 +82,10 @@ app.use(async (req, res, next) => {
     }
 
     // Locals
+    res.locals.auth = {
+        user: req.user
+    }
+
     res.locals.helpers = {
         can: require('./app/helpers/can')(req),
         error_parser: require('./app/helpers/error_parser'),

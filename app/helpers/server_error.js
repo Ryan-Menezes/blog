@@ -1,3 +1,3 @@
 module.exports = (code, res) => {
-    res.json(code)
+    return res.json(code)
 }

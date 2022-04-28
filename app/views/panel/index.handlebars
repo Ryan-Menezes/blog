@@ -1,7 +1,8 @@
 <section class="p-4 border panel">
-    <h2>Bem-vindo, Ryan!</h2><hr>
+    <h2>Bem-vindo(a), {{auth.user.first_name}}!</h2><hr>
 
     <div class="grid-5">
+        {{#if (helpers.can 'view.users')}}
         <a href="/painel/usuarios" title="Usuários">
             <div class="panel panel-default" style="margin: 0px;">
                 <div class="panel-heading">Usuários</div>
@@ -11,6 +12,9 @@
                 </div>
             </div>
         </a>
+        {{/if}}
+
+        {{#if (helpers.can 'view.posts')}}
         <a href="/painel/postagens" title="Postagens">
             <div class="panel panel-default" style="margin: 0px;">
                 <div class="panel-heading">Postagens</div>
@@ -20,6 +24,9 @@
                 </div>
             </div>
         </a>
+        {{/if}}
+
+        {{#if (helpers.can 'view.categories')}}
         <a href="/painel/categorias" title="Categorias">
             <div class="panel panel-default" style="margin: 0px;">
                 <div class="panel-heading">Categorias</div>
@@ -29,6 +36,9 @@
                 </div>
             </div>
         </a>
+        {{/if}}
+
+        {{#if (helpers.can 'view.roles')}}
         <a href="/painel/funcoes" title="Funções">
             <div class="panel panel-default" style="margin: 0px;">
                 <div class="panel-heading">Funções</div>
@@ -38,7 +48,9 @@
                 </div>
             </div>
         </a>
-
+        {{/if}}
+        
+        {{#if (helpers.can 'view.permissions')}}
         <a href="/painel/permissoes" title="Permissões">
             <div class="panel panel-default" style="margin: 0px;">
                 <div class="panel-heading">Permissões</div>
@@ -48,5 +60,6 @@
                 </div>
             </div>
         </a>
+        {{/if}}
     </div>
 </section>
