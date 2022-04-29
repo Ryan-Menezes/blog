@@ -927,6 +927,10 @@ a:hover {
   color: black;
 }
 
+.pagination {
+  margin: 0px !important;
+}
+
 .container-elements {
   display: grid;
   grid-template-columns: 300px 1fr;

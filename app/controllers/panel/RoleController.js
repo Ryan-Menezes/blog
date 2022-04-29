@@ -5,11 +5,18 @@ const url = '/painel/funcoes/'
 
 module.exports = {
     index: async (req, res, next) => {
+        if(!req.helpers.can('view.roles')){
+            req.helpers.server_error(404, res)
+        }
+
+        const total = await Role.count()
+
         Role.find().skip(req.page).limit(req.config.pagination.limit).lean()
         .then(roles => {
             res.render(`${path}index`, {
                 layout: 'panel',
-                roles
+                roles,
+                pages: total / req.config.pagination.limit
             }) 
         })
         .catch(error => {
@@ -23,6 +30,10 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
+        if(!req.helpers.can('create.roles')){
+            req.helpers.server_error(404, res)
+        }
+
         Permission.find().lean()
         .then(permissions => {
             res.render(`${path}create`, {
@@ -41,6 +52,10 @@ module.exports = {
     },
 
     store: async (req, res, next) => {
+        if(!req.helpers.can('create.roles')){
+            req.helpers.server_error(404, res)
+        }
+
         const data = req.body
 
         const role = new Role({
@@ -61,6 +76,10 @@ module.exports = {
     },
 
     edit: async (req, res, next) => {
+        if(!req.helpers.can('edit.roles')){
+            req.helpers.server_error(404, res)
+        }
+
         Role.findOne({
             _id: req.params.id
         }).lean()
@@ -93,6 +112,10 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
+        if(!req.helpers.can('edit.roles')){
+            req.helpers.server_error(404, res)
+        }
+
         const id = req.params.id
         const data = req.body
 
@@ -126,6 +149,10 @@ module.exports = {
     },
 
     delete: async (req, res, next) => {
+        if(!req.helpers.can('delete.roles')){
+            req.helpers.server_error(404, res)
+        }
+
         const id = req.params.id
 
         Role.findOne({

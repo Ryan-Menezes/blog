@@ -5,11 +5,18 @@ const url = '/painel/postagens/'
 
 module.exports = {
     index: async (req, res, next) => {
+        if(!req.helpers.can('view.posts')){
+            req.helpers.server_error(404, res)
+        }
+
+        const total = await Post.count()
+
         Post.find().skip(req.page).limit(req.config.pagination.limit).lean()
         .then(posts => {
             res.render(`${path}index`, {
                 layout: 'panel',
-                posts
+                posts,
+                pages: total / req.config.pagination.limit
             }) 
         })
         .catch(error => {
@@ -23,6 +30,10 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
+        if(!req.helpers.can('create.posts')){
+            req.helpers.server_error(404, res)
+        }
+
         Category.find().lean()
         .then(categories => {
             res.render(`${path}create`, {
@@ -41,7 +52,13 @@ module.exports = {
     },
 
     store: async (req, res, next) => {
+        if(!req.helpers.can('create.posts')){
+            req.helpers.server_error(404, res)
+        }
+
         const data = req.body
+
+        data.slug = data.slug ? req.helpers.slugify(data.slug) : req.helpers.slugify(data.title)
 
         const post = new Post({
             title: data.title,
@@ -64,6 +81,10 @@ module.exports = {
     },
 
     edit: async (req, res, next) => {
+        if(!req.helpers.can('edit.posts')){
+            req.helpers.server_error(404, res)
+        }
+
         Post.findOne({
             _id: req.params.id
         }).lean()
@@ -96,8 +117,14 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
+        if(!req.helpers.can('edit.posts')){
+            req.helpers.server_error(404, res)
+        }
+
         const id = req.params.id
         const data = req.body
+
+        data.slug = data.slug ? req.helpers.slugify(data.slug) : req.helpers.slugify(data.title)
 
         Post.findOne({
             _id: id
@@ -132,6 +159,10 @@ module.exports = {
     },
 
     delete: async (req, res, next) => {
+        if(!req.helpers.can('delete.posts')){
+            req.helpers.server_error(404, res)
+        }
+
         const id = req.params.id
 
         Post.findOne({

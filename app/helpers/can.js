@@ -1,11 +1,13 @@
 module.exports = (req) => {
     return (pname) => {
-        const res =  req.user.role.permissions.find(permission => {
-            if(permission.name == pname){
-                return true
-            }
-        })
-        
-        return res
+        if(req && req.user && req.user.role && req.user.role.permissions){
+            return req.user.role.permissions.find(permission => {
+                if(permission.name == pname){
+                    return true
+                }
+            })
+        }
+
+        return false
     }
 }

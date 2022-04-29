@@ -35,6 +35,17 @@ const hbs = handlebars.create({
             }
 
             return collection.find(v => v._id.toString() == value.toString())
+        },
+        for(from, to, incr, block) {
+            var accum = ''
+
+            for(var i = from; i <= to; i += incr)
+                accum += block.fn(i)
+
+            return accum;
+        },
+        validPages(pages){
+            return pages && pages > 1
         }
     }
 })
@@ -65,12 +76,13 @@ require('./database/seeders/create_permissions')
 app.use(async (req, res, next) => {
     // Global
     req.page = req.query.page || 1
-    req.page = ((req.page > 0) ? req.page : 1) - 1
+    req.page = (((req.page > 0) ? req.page : 1) - 1) * paginationConfig.limit
 
     req.helpers = {
-        can: require('./app/helpers/can'),
+        can: require('./app/helpers/can')(req),
         error_parser: require('./app/helpers/error_parser'),
-        server_error: require('./app/helpers/server_error')
+        server_error: require('./app/helpers/server_error'),
+        slugify: require('./app/helpers/slugify')
     }
 
     req.config = {
@@ -89,7 +101,8 @@ app.use(async (req, res, next) => {
     res.locals.helpers = {
         can: require('./app/helpers/can')(req),
         error_parser: require('./app/helpers/error_parser'),
-        server_error: require('./app/helpers/server_error')
+        server_error: require('./app/helpers/server_error'),
+        slugify: require('./app/helpers/slugify')
     }
 
     res.locals.config = {

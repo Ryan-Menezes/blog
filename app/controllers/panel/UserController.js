@@ -6,11 +6,18 @@ const url = '/painel/usuarios/'
 
 module.exports = {
     index: async (req, res, next) => {
+        if(!req.helpers.can('view.users')){
+            req.helpers.server_error(404, res)
+        }
+
+        const total = await User.count()
+
         User.find().populate('role').skip(req.page).limit(req.config.pagination.limit).lean()
         .then(users => {
             res.render(`${path}index`, {
                 layout: 'panel',
-                users
+                users,
+                pages: total / req.config.pagination.limit
             }) 
         })
         .catch(error => {
@@ -24,6 +31,10 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
+        if(!req.helpers.can('create.users')){
+            req.helpers.server_error(404, res)
+        }
+
         Role.find().lean()
         .then(roles => {
             res.render(`${path}create`, {
@@ -42,6 +53,10 @@ module.exports = {
     },
 
     store: async (req, res, next) => {
+        if(!req.helpers.can('create.users')){
+            req.helpers.server_error(404, res)
+        }
+
         const data = req.body
 
         const user = new User({
@@ -80,6 +95,10 @@ module.exports = {
     },
 
     edit: async (req, res, next) => {
+        if(!req.helpers.can('edit.users')){
+            req.helpers.server_error(404, res)
+        }
+
         User.findOne({
             _id: req.params.id
         }).lean()
@@ -112,6 +131,10 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
+        if(!req.helpers.can('edit.users')){
+            req.helpers.server_error(404, res)
+        }
+
         const id = req.params.id
         const data = req.body
 
@@ -154,8 +177,11 @@ module.exports = {
         })
     },
 
-
     delete: async (req, res, next) => {
+        if(!req.helpers.can('delete.users')){
+            req.helpers.server_error(404, res)
+        }
+
         const id = req.params.id
 
         User.findOne({

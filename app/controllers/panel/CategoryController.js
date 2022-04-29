@@ -4,11 +4,18 @@ const url = '/painel/categorias/'
 
 module.exports = {
     index: async (req, res, next) => {
+        if(!req.helpers.can('view.categories')){
+            req.helpers.server_error(404, res)
+        }
+
+        const total = await Category.count()
+
         Category.find().skip(req.page).limit(req.config.pagination.limit).lean()
         .then(categories => {
             res.render(`${path}index`, {
                 layout: 'panel',
-                categories
+                categories,
+                pages: total / req.config.pagination.limit
             }) 
         })
         .catch(error => {
@@ -22,13 +29,23 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
+        if(!req.helpers.can('create.categories')){
+            req.helpers.server_error(404, res)
+        }
+
         res.render(`${path}create`, {
             layout: 'panel'
         })
     },
 
     store: async (req, res, next) => {
+        if(!req.helpers.can('create.categories')){
+            req.helpers.server_error(404, res)
+        }
+
         const data = req.body
+
+        data.slug = data.slug ? req.helpers.slugify(data.slug) : req.helpers.slugify(data.name)
 
         const category = new Category({
             name: data.name,
@@ -48,6 +65,10 @@ module.exports = {
     },
 
     edit: async (req, res, next) => {
+        if(!req.helpers.can('edit.categories')){
+            req.helpers.server_error(404, res)
+        }
+
         Category.findOne({
             _id: req.params.id
         }).lean()
@@ -67,8 +88,14 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
+        if(!req.helpers.can('edit.categories')){
+            req.helpers.server_error(404, res)
+        }
+
         const id = req.params.id
         const data = req.body
+
+        data.slug = data.slug ? req.helpers.slugify(data.slug) : req.helpers.slugify(data.name)
 
         Category.findOne({
             _id: id
@@ -101,6 +128,10 @@ module.exports = {
 
 
     delete: async (req, res, next) => {
+        if(!req.helpers.can('delete.categories')){
+            req.helpers.server_error(404, res)
+        }
+
         const id = req.params.id
 
         Category.findOne({
