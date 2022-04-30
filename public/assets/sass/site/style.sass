@@ -1,0 +1,46 @@
+@use '../partials/globals'
+@use '../partials/variables'
+@use '../partials/mixins'
+@import '../partials/colors'
+
+.button-desq
+    @include mixins.border-radius(5px)
+    padding: 20px
+    font-size: 15px
+    background-color: variables.$primary-color
+    display: inline-block
+    color: white
+    transition-duration: 0.3s
+    text-transform: uppercase
+
+    &:hover
+        text-decoration: none
+        transform: scale(1.1)
+
+.header-blog
+    padding: 25px 20%
+    box-shadow: 0px 0px 10px #8a8a8a
+
+    h1
+        font-size: 25px
+
+.banner-blog
+    padding: 0px 20%
+    background-blend-mode: darken
+    background-size: cover
+    background-repeat: no-repeat
+    background-color: rgba(0, 0, 0, 0.5)
+    height: 600px
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+    .banner-title
+        font-size: 50px
+        max-width: 400px
+        color: white
+
+    .banner-desc
+        max-width: 400px  
+        text-align: justify
+        color: #c9c9c9

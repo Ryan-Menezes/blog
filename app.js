@@ -122,7 +122,10 @@ app.use(async (req, res, next) => {
     next()
 })
 
-// Routes
+// Routes - SITE
+app.use('/', require('./routes/site/index'))
+
+// Routes - PANEL
 require('./app/middlewares/passport')()
 
 app.use('/painel/login', require('./routes/panel/login'))
