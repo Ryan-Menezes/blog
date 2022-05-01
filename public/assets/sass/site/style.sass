@@ -44,3 +44,76 @@
         max-width: 400px  
         text-align: justify
         color: #c9c9c9
+
+.footer-blog
+    padding: 25px
+    text-align: center
+    background-color: variables.$dark-color
+    color: white
+
+    a
+        color: white
+
+.container
+    margin: 50px 0px
+    padding: 0px 20%
+    @include mixins.grid(1fr 350px, 50px)
+
+    .grid-posts
+
+        .post-card
+            @include mixins.border-radius(5px)
+            padding: 25px
+            border: 1px solid lighten(variables.$dark-color, 75)
+            transition-duration: 0.3s
+            margin-bottom: 20px
+
+            &:hover
+                box-shadow: 0px 0px 20px lighten(variables.$dark-color, 75)
+
+            &-title
+                font-size: 20px
+                padding-bottom: 15px
+                border-bottom: 1px solid lighten(variables.$dark-color, 75)
+
+            &-desc
+                margin-top: 15px
+                font-size: 14px
+
+    .sidemenu
+        @include mixins.border-radius(5px)
+        border: 1px solid lighten(variables.$dark-color, 75)
+        overflow: hidden
+
+        .form-search
+            @include mixins.grid(1fr 50px, 10px)
+
+            .form-control
+                width: 100%
+
+        &-header
+            padding: 15px
+            background-color: lighten(variables.$dark-color, 75)
+
+        &-title
+            font-size: 16px
+            color: variables.$dark-color
+
+        &-body
+            padding: 15px
+
+            .categories
+
+                &-card
+                    overflow: hidden
+                
+                    &-header
+                        padding: 10px 0px
+                        border-bottom: 1px solid lighten(variables.$dark-color, 75)
+
+                    &-body
+                        padding: 10px 0px
+                        
+                    &-title
+                        font-size: 16px
+                        color: variables.$dark-color
