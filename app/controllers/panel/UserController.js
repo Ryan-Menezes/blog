@@ -12,7 +12,9 @@ module.exports = {
 
         const total = await User.count()
 
-        User.find().populate('role').skip(req.page).limit(req.config.pagination.limit).lean()
+        User.find().sort({
+            created_at: -1
+        }).populate('role').skip(req.page).limit(req.config.pagination.limit).lean()
         .then(users => {
             res.render(`${path}index`, {
                 layout: 'panel',

@@ -59,6 +59,13 @@
     padding: 0px 20%
     @include mixins.grid(1fr 350px, 50px)
 
+    .single-post
+
+        &-title
+            font-size: 40px
+            padding-bottom: 20px
+            border-bottom: 1px solid lighten(variables.$dark-color, 75)
+
     .grid-posts
 
         .post-card
@@ -67,9 +74,6 @@
             border: 1px solid lighten(variables.$dark-color, 75)
             transition-duration: 0.3s
             margin-bottom: 20px
-
-            &:hover
-                box-shadow: 0px 0px 20px lighten(variables.$dark-color, 75)
 
             &-title
                 font-size: 20px

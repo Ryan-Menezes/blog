@@ -11,7 +11,9 @@ module.exports = {
 
         const total = await Role.count()
 
-        Role.find().skip(req.page).limit(req.config.pagination.limit).lean()
+        Role.find().sort({
+            created_at: -1
+        }).skip(req.page).limit(req.config.pagination.limit).lean()
         .then(roles => {
             res.render(`${path}index`, {
                 layout: 'panel',

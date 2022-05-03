@@ -1,6 +1,12 @@
 @use 'variables'
 
 @for $i from 1 through 10
+    .px-#{$i}
+        padding: #{($i * variables.$padding)}!important
+
+    .py-#{$i}
+        padding: #{($i * variables.$padding)}!important
+
     .p-#{$i}
         padding: #{($i * variables.$padding)}!important
 
@@ -17,6 +23,12 @@
         padding-bottom: #{($i * variables.$padding)}!important
 
 @for $i from 1 through 10
+    .my-#{$i}
+        margin-bottom: #{($i * variables.$margin)}!important
+
+    .mx-#{$i}
+        margin-bottom: #{($i * variables.$margin)}!important
+
     .m-#{$i}
         margin: #{($i * variables.$margin)}!important
 

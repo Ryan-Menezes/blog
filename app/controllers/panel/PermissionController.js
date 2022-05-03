@@ -10,7 +10,9 @@ module.exports = {
 
         const total = await Permission.count()
 
-        Permission.find().skip(req.page).limit(req.config.pagination.limit).lean()
+        Permission.find().sort({
+            created_at: -1
+        }).skip(req.page).limit(req.config.pagination.limit).lean()
         .then(permissions => {
             res.render(`${path}index`, {
                 layout: 'panel',

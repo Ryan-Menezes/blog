@@ -11,7 +11,9 @@ module.exports = {
 
         const total = await Post.count()
 
-        Post.find().skip(req.page).limit(req.config.pagination.limit).lean()
+        Post.find().sort({
+            created_at: -1
+        }).skip(req.page).limit(req.config.pagination.limit).lean()
         .then(posts => {
             res.render(`${path}index`, {
                 layout: 'panel',

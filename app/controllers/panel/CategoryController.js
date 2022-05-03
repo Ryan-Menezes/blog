@@ -10,7 +10,9 @@ module.exports = {
 
         const total = await Category.count()
 
-        Category.find().skip(req.page).limit(req.config.pagination.limit).lean()
+        Category.find().sort({
+            created_at: -1
+        }).skip(req.page).limit(req.config.pagination.limit).lean()
         .then(categories => {
             res.render(`${path}index`, {
                 layout: 'panel',

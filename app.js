@@ -124,6 +124,8 @@ app.use(async (req, res, next) => {
 
 // Routes - SITE
 app.use('/', require('./routes/site/index'))
+app.use('/postagens', require('./routes/site/posts'))
+app.use('/categorias', require('./routes/site/categories'))
 
 // Routes - PANEL
 require('./app/middlewares/passport')()
