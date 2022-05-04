@@ -6,5 +6,6 @@ const SiteController = require('../../app/controllers/site/SiteController')
 
 // Routes
 router.get('/', SiteController.index)
+router.post('/', SiteController.index)
 
 module.exports = router

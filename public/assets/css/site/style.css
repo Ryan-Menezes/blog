@@ -6,6 +6,7 @@
   font-family: "Nunito", sans-serif;
   font-family: "Plus Jakarta Sans", sans-serif;
   outline: none;
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1087,6 +1088,22 @@ a:hover {
   color: black;
 }
 
+.pagination {
+  display: flex;
+}
+.pagination .page-item a {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #d6d6d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination .page-item a:hover {
+  text-decoration: none;
+}
+
 .button-desq {
   -webkik-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -1111,6 +1128,7 @@ a:hover {
 }
 .header-blog h1 {
   font-size: 25px;
+  display: inline-block;
 }
 
 .banner-blog {
@@ -1123,6 +1141,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-attachment: fixed;
 }
 .banner-blog .banner-title {
   font-size: 50px;

@@ -1,27 +1,38 @@
 <section class="container">
-    <div class="grid-posts">
-        {{#each posts}}
-        <div class="post-card">
-            <h3 class="post-card-title"><a href="/postagens/{{this.slug}}" title="{{this.title}}">{{this.title}}</a></h3>
-            <p class="post-card-desc">{{this.description}}</p>
-            <div class="mt-2">
-                <span><small><i class="fas fa-clock"></i> {{dateFormat this.created_at}}</small></span>
-                <span><small><i class="fas fa-tags ml-2"></i>
-                    {{#each this.categories}}
-                    <a href="/categorias/{{this.slug}}" title="{{this.name}}" class="p-1 bg-primary ml-1">{{this.name}}</a>
-                    {{/each}}
-                </small></span>
-            </div>
+    <div>
+        <div class="mb-4">
+            <h2 class="mb-2">Postagens relacionadas à categoria: {{category.name}}</h2><hr>
         </div>
-        {{/each}}
+
+        <div class="grid-posts">
+            {{#each posts}}
+            <div class="post-card">
+                <h3 class="post-card-title"><a href="/postagens/{{this.slug}}" title="{{this.title}}">{{this.title}}</a></h3>
+                <p class="post-card-desc">{{this.description}}</p>
+                <div class="mt-2">
+                    <span><small><i class="fas fa-clock"></i> {{dateFormat this.created_at}}</small></span>
+                    <span><small><i class="fas fa-tags ml-2"></i>
+                        {{#each this.categories}}
+                        <a href="/categorias/{{this.slug}}" title="{{this.name}}" class="p-1 bg-primary ml-1">{{this.name}}</a>
+                        {{/each}}
+                    </small></span>
+                </div>
+            </div>
+            {{else}}
+            <p class="mt-3">Não há postagens relacionadas à esta categoria: {{category.name}}</p>
+            {{/each}}
+        </div>
+
+        {{> _pagination}}
     </div>
+    
     <aside class="sidemenu">
         <div class="sidemenu-header">
             <h4 class="sidemenu-title">Menu</h4>
         </div>
 
         <div class="sidemenu-body">
-            <form action="" method="POST" class="form form-search">
+            <form action="/" method="POST" class="form form-search">
                 <div class="form-group">
                     <input type="search" name="search" placeholder="Buscar..." class="form-control">
                 </div>

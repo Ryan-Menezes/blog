@@ -42,7 +42,7 @@
         <tbody>
             {{#each categories}}
             <tr>
-                <td><a href="{{this.slug}}" target="_blank" title="">{{this.name}} <i class="fa-solid fa-external-link"></i></a></td>
+                <td><a href="/categorias/{{this.slug}}" target="_blank" title="">{{this.name}} <i class="fa-solid fa-external-link"></i></a></td>
                 <td>{{dateFormat this.created_at}}</td>
                 <td>
                     {{#if (../helpers.can 'edit.categories')}}

@@ -13,31 +13,30 @@ module.exports = {
                 return req.helpers.server_error(404, res)
             }
 
-            Post.find().populate('categories').lean()
+            Post.find({
+                categories: category._id,
+                visible: true
+            }).populate('categories').lean()
             .then(posts => {
                 Category.find().lean()
                 .then(categories => {
                     res.render(`${path}show`, {
                         layout: 'site',
+                        title: category.name,
                         categories,
                         category,
                         posts
                     }) 
                 })
                 .catch(error => {
-                    Posts.find().lean()
-                    .then(posts => {
-                        res.render(`${path}show`, {
-                            layout: 'site',
-                            categories: [],
-                            category,
-                            posts,
-                            error,
-                            errors: ['Ocorreu um erro ao tentar listar as categorias!']
-                        }) 
-                    })
-                    .catch(error => {
-                        req.helpers.server_error(404, res)
+                    res.render(`${path}show`, {
+                        layout: 'site',
+                        title: category.name,
+                        categories: [],
+                        category,
+                        posts,
+                        error,
+                        errors: ['Ocorreu um erro ao tentar listar as categorias!']
                     })
                 })
             })

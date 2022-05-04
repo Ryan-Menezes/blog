@@ -16,6 +16,7 @@ module.exports = {
         .then(categories => {
             res.render(`${path}index`, {
                 layout: 'panel',
+                title: 'Categorias',
                 categories,
                 pages: total / req.config.pagination.limit
             }) 
@@ -23,6 +24,7 @@ module.exports = {
         .catch(error => {
             res.render(`${path}index`, {
                 layout: 'panel',
+                title: 'Categorias',
                 categories: [],
                 error,
                 errors: ['Ocorreu um erro ao tentar listar as categorias do sistema!']
@@ -36,7 +38,8 @@ module.exports = {
         }
 
         res.render(`${path}create`, {
-            layout: 'panel'
+            layout: 'panel',
+            title: 'Nova Categoria'
         })
     },
 
@@ -81,6 +84,7 @@ module.exports = {
 
             res.render(`${path}edit`, {
                 layout: 'panel',
+                title: 'Editar Categoria',
                 category
             })
         })

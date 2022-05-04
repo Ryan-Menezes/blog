@@ -1,36 +1,43 @@
-<section class="banner-blog" style="background-image: url('https://www.nafa.edu.sg/images/default-source/course-page-thumbnails/degree/bachelor-of-arts-honours-fine-art-b.jpg?sfvrsn=a29916b2_2');">
+<section class="banner-blog" style="background-image: url('/assets/img/background.jpg');">
     <h2 class="banner-title mb-1">Fique sempre por dentro das novidades!</h2>
     <p class="banner-desc mb-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium autem quasi mollitia quos sapiente possimus omnis iste iusto soluta id.</p>
 
     <div>
-        <a href="" title="Ver Postagens" class="button-desq">Ver todas as postagens</a>
+        <a href="#postagens" title="Ver Postagens" class="button-desq">Ver todas as postagens</a>
     </div>
 </section>
 
-<section class="container">
-    <div class="grid-posts">
-        {{#each posts}}
-        <div class="post-card">
-            <h3 class="post-card-title"><a href="/postagens/{{this.slug}}" title="{{this.title}}">{{this.title}}</a></h3>
-            <p class="post-card-desc">{{this.description}}</p>
-            <div class="mt-2">
-                <span><small><i class="fas fa-clock"></i> {{dateFormat this.created_at}}</small></span>
-                <span><small><i class="fas fa-tags ml-2"></i>
-                    {{#each this.categories}}
-                    <a href="/categorias/{{this.slug}}" title="{{this.name}}" class="p-1 bg-primary ml-1">{{this.name}}</a>
-                    {{/each}}
-                </small></span>
+<section class="container" id="postagens">
+    <div>
+        <div class="grid-posts">
+            {{#each posts}}
+            <div class="post-card">
+                <h3 class="post-card-title"><a href="/postagens/{{this.slug}}" title="{{this.title}}">{{this.title}}</a></h3>
+                <p class="post-card-desc">{{this.description}}</p>
+                <div class="mt-2">
+                    <span><small><i class="fas fa-clock"></i> {{dateFormat this.created_at}}</small></span>
+                    <span><small><i class="fas fa-tags ml-2"></i>
+                        {{#each this.categories}}
+                        <a href="/categorias/{{this.slug}}" title="{{this.name}}" class="p-1 bg-primary ml-1">{{this.name}}</a>
+                        {{/each}}
+                    </small></span>
+                </div>
             </div>
+            {{else}}
+            <hr><p class="mt-3">Infelizmente ainda não há postagens feitas!</p>
+            {{/each}}
         </div>
-        {{/each}}
+        
+        {{> _pagination}}
     </div>
+    
     <aside class="sidemenu">
         <div class="sidemenu-header">
             <h4 class="sidemenu-title">Menu</h4>
         </div>
 
         <div class="sidemenu-body">
-            <form action="" method="POST" class="form form-search">
+            <form action="/" method="POST" class="form form-search">
                 <div class="form-group">
                     <input type="search" name="search" placeholder="Buscar..." class="form-control">
                 </div>

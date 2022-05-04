@@ -17,6 +17,7 @@ module.exports = {
         .then(posts => {
             res.render(`${path}index`, {
                 layout: 'panel',
+                title: 'Postagens',
                 posts,
                 pages: total / req.config.pagination.limit
             }) 
@@ -24,6 +25,7 @@ module.exports = {
         .catch(error => {
             res.render(`${path}index`, {
                 layout: 'panel',
+                title: 'Postagens',
                 posts: [],
                 error,
                 errors: ['Ocorreu um erro ao tentar listar as postagens do sistema!']
@@ -40,12 +42,14 @@ module.exports = {
         .then(categories => {
             res.render(`${path}create`, {
                 layout: 'panel',
+                title: 'Nova Categoriaa',
                 categories
             }) 
         })
         .catch(error => {
             res.render(`${path}create`, {
                 layout: 'panel',
+                title: 'Nova Categoria',
                 categories: [],
                 error,
                 errors: ['Ocorreu um erro ao tentar listar as categorias para cadastro!']
@@ -99,6 +103,7 @@ module.exports = {
             .then(categories => {
                 res.render(`${path}edit`, {
                     layout: 'panel',
+                    title: 'Editar Categoria',
                     categories,
                     post
                 }) 
@@ -106,6 +111,7 @@ module.exports = {
             .catch(error => {
                 res.render(`${path}edit`, {
                     layout: 'panel',
+                    title: 'Editar Categoria',
                     categories: [],
                     post,
                     error,

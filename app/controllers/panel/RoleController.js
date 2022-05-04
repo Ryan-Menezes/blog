@@ -17,6 +17,7 @@ module.exports = {
         .then(roles => {
             res.render(`${path}index`, {
                 layout: 'panel',
+                title: 'Funções',
                 roles,
                 pages: total / req.config.pagination.limit
             }) 
@@ -40,12 +41,14 @@ module.exports = {
         .then(permissions => {
             res.render(`${path}create`, {
                 layout: 'panel',
+                title: 'Nova Categoria',
                 permissions
             }) 
         })
         .catch(error => {
             res.render(`${path}create`, {
                 layout: 'panel',
+                title: 'Nova Categoria',
                 permissions: [],
                 error,
                 errors: ['Ocorreu um erro ao tentar listar as permissões para cadastro!']
@@ -94,6 +97,7 @@ module.exports = {
             .then(permissions => {
                 res.render(`${path}edit`, {
                     layout: 'panel',
+                    title: 'Editar Categoria',
                     permissions,
                     role
                 }) 
@@ -101,6 +105,7 @@ module.exports = {
             .catch(error => {
                 res.render(`${path}edit`, {
                     layout: 'panel',
+                    title: 'Editar Categoria',
                     permissions: [],
                     role,
                     error,

@@ -16,6 +16,7 @@ module.exports = {
         .then(permissions => {
             res.render(`${path}index`, {
                 layout: 'panel',
+                title: 'Permissões',
                 permissions,
                 pages: total / req.config.pagination.limit
             }) 
@@ -45,6 +46,7 @@ module.exports = {
 
             res.render(`${path}show`, {
                 layout: 'panel',
+                title: 'Ver Permissão',
                 permission
             })
         })

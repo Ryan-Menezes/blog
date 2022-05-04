@@ -6,7 +6,8 @@ const url = '/postagens/'
 module.exports = {
     show: async (req, res, next) => {
         Post.findOne({
-            slug: req.params.slug
+            slug: req.params.slug,
+            visible: true
         }).populate('categories').lean()
         .then(post => {
             if(!post){
@@ -17,6 +18,7 @@ module.exports = {
             .then(categories => {
                 res.render(`${path}show`, {
                     layout: 'site',
+                    title: post.title,
                     categories,
                     post
                 }) 
@@ -24,6 +26,7 @@ module.exports = {
             .catch(error => {
                 res.render(`${path}show`, {
                     layout: 'site',
+                    title: post.title,
                     categories: [],
                     post,
                     error,

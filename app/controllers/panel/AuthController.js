@@ -7,7 +7,8 @@ const url = '/painel/login/'
 module.exports = {
     index: async (req, res, next) => {
         res.render(`${path}index`, {
-            layout: 'auth'
+            layout: 'auth',
+            title: 'Login'
         })
     },
 

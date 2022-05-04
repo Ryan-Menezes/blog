@@ -5,9 +5,20 @@ const url = '/'
 
 module.exports = {
     index: async (req, res, next) => {
-        const total = await Post.count()
+        const search = req.body.search ? req.body.search : ''
+        const total = await Post.count({
+            title: {
+                $regex: search,
+                $options: 'im'
+            }
+        })
 
-        Post.find().sort({
+        Post.find({
+            title: {
+                $regex: search,
+                $options: 'im'
+            }
+        }).sort({
             created_at: -1
         }).populate('categories').skip(req.page).limit(req.config.pagination.limit).lean()
         .then(posts => {
@@ -17,6 +28,7 @@ module.exports = {
             .then(categories => {
                 res.render(`${path}index`, {
                     layout: 'site',
+                    title: 'Fique sempre por dentro das novidades',
                     posts,
                     categories,
                     pages: total / req.config.pagination.limit
@@ -25,6 +37,7 @@ module.exports = {
             .catch(error => {
                 res.render(`${path}index`, {
                     layout: 'site',
+                    title: 'Fique sempre por dentro das novidades',
                     posts: [],
                     categories: [],
                     error,

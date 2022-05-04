@@ -11,6 +11,7 @@ module.exports = {
     index: async (req, res, next) => {
         res.render(`${path}index`, {
             layout: 'panel',
+            title: 'Início',
             count: {
                 users:          await User.count(),
                 posts:          await Post.count(),

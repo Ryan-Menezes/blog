@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}} | {{config.app.name}}</title>
+    <title>{{config.app.name}}</title>
     <link rel="icon" type="image/*" href="/assets/img/icon.png" sizes="32x32">
     <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/brands.min.css">
@@ -15,10 +15,31 @@
     <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/v4-font-face.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/v4-shims.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/v5-font-face.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/panel/style.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/panel/login.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/site/style.css">
+    <style>
+        .container_error{
+            position: absolute;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            background-color: #1c7aed;
+        }
+
+        .container_error h1{
+            padding: 20px;
+            font-size: 150px;
+            color: white;
+            background-color: #e33832;
+        }
+    </style>
 </head>
 <body>
-    {{{body}}}
+    <section class="container_error">
+        <h1>{{code}}</h1>
+    </section>
 </body>
 </html>

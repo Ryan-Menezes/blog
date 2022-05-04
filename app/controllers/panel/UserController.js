@@ -18,6 +18,7 @@ module.exports = {
         .then(users => {
             res.render(`${path}index`, {
                 layout: 'panel',
+                title: 'Usuários',
                 users,
                 pages: total / req.config.pagination.limit
             }) 
@@ -25,6 +26,7 @@ module.exports = {
         .catch(error => {
             res.render(`${path}index`, {
                 layout: 'panel',
+                title: 'Usuários',
                 users: [],
                 error,
                 errors: ['Ocorreu um erro ao tentar listar os usuários do sistema!']
@@ -41,12 +43,14 @@ module.exports = {
         .then(roles => {
             res.render(`${path}create`, {
                 layout: 'panel',
+                title: 'Novo Usuário',
                 roles
             }) 
         })
         .catch(error => {
             res.render(`${path}create`, {
                 layout: 'panel',
+                title: 'Novo Usuário',
                 roles: [],
                 error,
                 errors: ['Ocorreu um erro ao tentar listar as funções para cadastro!']
@@ -113,6 +117,7 @@ module.exports = {
             .then(roles => {
                 res.render(`${path}edit`, {
                     layout: 'panel',
+                    title: 'Editar Usuário',
                     roles,
                     user
                 }) 
@@ -120,6 +125,7 @@ module.exports = {
             .catch(error => {
                 res.render(`${path}edit`, {
                     layout: 'panel',
+                    title: 'Editar Usuário',
                     roles: [],
                     user,
                     error,

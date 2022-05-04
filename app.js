@@ -70,7 +70,7 @@ mongoose.connect(`mongodb://${databaseConfig.server}/${databaseConfig.name}`)
 .then(() => console.log(`MongoDB Connected: mongodb://${databaseConfig.server}/${databaseConfig.name}`))
 .catch(error => console.log(error))
 
-require('./database/seeders/create_permissions')
+// require('./database/seeders/create_permissions')
 
 // Middlewares
 app.use(async (req, res, next) => {

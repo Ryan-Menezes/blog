@@ -1,3 +1,6 @@
 module.exports = (code, res) => {
-    return res.json(code)
+    return res.render('error', {
+        layout: false,
+        code
+    })
 }
