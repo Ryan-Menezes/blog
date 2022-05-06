@@ -4,11 +4,27 @@
     </div>
     <ul>
         <a href="/painel" title="Início do Painel"><li><i class="fa-solid fa-home"></i> Início</li></a>
+
+        {{#if (helpers.can 'view.users')}}
         <a href="/painel/usuarios" title="Página de Usuários"><li><i class="fa-solid fa-users"></i> Usuários</li></a>
+        {{/if}}
+
+        {{#if (helpers.can 'view.posts')}}
         <a href="/painel/postagens" title="Página de Postagens"><li><i class="fa-solid fa-newspaper"></i> Postagens</li></a>
+        {{/if}}
+
+        {{#if (helpers.can 'view.categories')}}
         <a href="/painel/categorias" title="Página de Categorias"><li><i class="fa-solid fa-tags"></i> Categorias</li></a>
+        {{/if}}
+
+        {{#if (helpers.can 'view.roles')}}
         <a href="/painel/funcoes" title="Página de Funções"><li><i class="fa-solid fa-user-tie"></i> Funções</li></a>
+        {{/if}}
+
+        {{#if (helpers.can 'view.permissions')}}
         <a href="/painel/permissoes" title="Página de Permissões"><li><i class="fa-solid fa-lock"></i> Permissões</li></a>
+        {{/if}}
+
         <a href="/painel/sair" title="Sair do Painel"><li><i class="fa-solid fa-right-from-bracket"></i> Sair</li></a>
     </ul>
 </nav>
