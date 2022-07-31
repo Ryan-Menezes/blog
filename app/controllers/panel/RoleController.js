@@ -6,7 +6,7 @@ const url = '/painel/funcoes/'
 module.exports = {
     index: async (req, res, next) => {
         if(!req.helpers.can('view.roles')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const total = await Role.count()
@@ -34,7 +34,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         if(!req.helpers.can('create.roles')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         Permission.find().lean()
@@ -58,7 +58,7 @@ module.exports = {
 
     store: async (req, res, next) => {
         if(!req.helpers.can('create.roles')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const data = req.body
@@ -82,7 +82,7 @@ module.exports = {
 
     edit: async (req, res, next) => {
         if(!req.helpers.can('edit.roles')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         Role.findOne({
@@ -120,7 +120,7 @@ module.exports = {
 
     update: async (req, res, next) => {
         if(!req.helpers.can('edit.roles')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const id = req.params.id
@@ -157,7 +157,7 @@ module.exports = {
 
     delete: async (req, res, next) => {
         if(!req.helpers.can('delete.roles')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const id = req.params.id

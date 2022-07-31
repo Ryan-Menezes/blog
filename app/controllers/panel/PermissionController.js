@@ -5,7 +5,7 @@ const url = '/painel/permissoes/'
 module.exports = {
     index: async (req, res, next) => {
         if(!req.helpers.can('view.permissions')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const total = await Permission.count()
@@ -33,7 +33,7 @@ module.exports = {
 
     show: async (req, res, next) => {
         if(!req.helpers.can('view.permissions')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         Permission.findOne({

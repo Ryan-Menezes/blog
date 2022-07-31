@@ -5,7 +5,7 @@ const url = '/painel/categorias/'
 module.exports = {
     index: async (req, res, next) => {
         if(!req.helpers.can('view.categories')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const total = await Category.count()
@@ -34,7 +34,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         if(!req.helpers.can('create.categories')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         res.render(`${path}create`, {
@@ -45,7 +45,7 @@ module.exports = {
 
     store: async (req, res, next) => {
         if(!req.helpers.can('create.categories')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const data = req.body
@@ -71,7 +71,7 @@ module.exports = {
 
     edit: async (req, res, next) => {
         if(!req.helpers.can('edit.categories')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         Category.findOne({
@@ -95,7 +95,7 @@ module.exports = {
 
     update: async (req, res, next) => {
         if(!req.helpers.can('edit.categories')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const id = req.params.id
@@ -135,7 +135,7 @@ module.exports = {
 
     delete: async (req, res, next) => {
         if(!req.helpers.can('delete.categories')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const id = req.params.id

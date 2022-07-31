@@ -7,7 +7,7 @@ const url = '/painel/usuarios/'
 module.exports = {
     index: async (req, res, next) => {
         if(!req.helpers.can('view.users')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const total = await User.count()
@@ -36,7 +36,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         if(!req.helpers.can('create.users')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         Role.find().lean()
@@ -60,7 +60,7 @@ module.exports = {
 
     store: async (req, res, next) => {
         if(!req.helpers.can('create.users')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const data = req.body
@@ -102,7 +102,7 @@ module.exports = {
 
     edit: async (req, res, next) => {
         if(!req.helpers.can('edit.users')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         User.findOne({
@@ -140,7 +140,7 @@ module.exports = {
 
     update: async (req, res, next) => {
         if(!req.helpers.can('edit.users')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const id = req.params.id
@@ -187,7 +187,7 @@ module.exports = {
 
     delete: async (req, res, next) => {
         if(!req.helpers.can('delete.users')){
-            req.helpers.server_error(404, res)
+            return req.helpers.server_error(404, res)
         }
 
         const id = req.params.id
